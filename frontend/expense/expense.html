@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense</title>
+    <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+</head>
+<body>
+    <div>
+        <div>
+            <form id="expenseForm" action="">
+               <label for="expenseAmount">Expense Amount</label>
+               <input id="expenseAmount" type="number" >
+               <label for="description">Description</label>
+               <input id="description" type="text" >
+               <label for="category">Category</label>
+               <select name="category" id="category">
+                   <option value="food">food</option>
+                   <option value="movie">movie</option>
+                   <option value="petrol">petrol</option>
+                   <option value="study">study material</option>
+       
+       
+               </select>
+       
+               <button type="submit">Submit</button>
+       
+            </form>
+            <button id="BuyPremiumButton" type="button">buy premium</button>
+           </div>
+           <div>
+            <ul id="expenseList">
+                <!-- <li class="expenseitems"> 100 - fuel - petrol  <button type="button" onclick="deleteItem()">Delete</button> </li> -->
+            </ul>
+            <script src="cashfreeService.js"></script>
+           </div>
+    </div>
+
+    
+    
+
+    <script src="expense.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</body>
+</html>
