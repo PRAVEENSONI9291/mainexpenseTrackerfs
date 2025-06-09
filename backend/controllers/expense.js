@@ -1,5 +1,6 @@
 const express= require('express');
 const expense= require('../models/expense');
+const user= require('../models/user');
 
 
 const addExpense= async(req, res)=>{
@@ -13,6 +14,13 @@ const addExpense= async(req, res)=>{
     try {
 
         await expense.create({amount:amount, description:description, category:category, userId: userId });
+
+       
+        const amountAddInUser = await user.findByPk(req.user.id);
+        amountAddInUser.totalExpense +=parseInt(amount);
+        await amountAddInUser.save();
+        
+        
         return res.status(200).json({message: "expense added successfully"})
 
         
@@ -53,9 +61,20 @@ const deleteExpense= async (req,res)=>{
     let element= req.query.id.split('-');
     let idToDelete= element[1];
     
+    
+    
     try {
-
+        const deletedId= await expense.findByPk(idToDelete);
+        
+        
         await expense.destroy({where:{id:idToDelete}});
+
+
+        const amountdeleteInUser = await user.findByPk(req.user.id);
+        amountdeleteInUser.totalExpense -=parseInt(deletedId.amount);
+        await amountdeleteInUser.save();
+
+
         return res.status(200).json({message:"item deleted successfully"});
         
     } catch (error) {

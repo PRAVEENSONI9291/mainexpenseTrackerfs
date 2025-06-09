@@ -20,7 +20,7 @@ const signup= async(req, res)=>{
                 console.log(err);
 
 
-                await user.create({ name, email, password: hash, isPremium: false });
+                await user.create({ name, email, password: hash, isPremium: false, totalExpense:0 });
                 res.status(201).json({ message: 'successfully created new user' })
             })
 
