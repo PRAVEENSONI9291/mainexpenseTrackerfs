@@ -9,7 +9,9 @@ const orderController= require('../controllers/order');
 
 
 
-router.get('/',authenticate, orderController.createCashfreeOrder);
+router.post('/createOrder',authenticate, orderController.createCashfreeOrder);
+router.post('/updateorderstatus',authenticate, orderController.updateCashfreeOrder);
+
 
 
 

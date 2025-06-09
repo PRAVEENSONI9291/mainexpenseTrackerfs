@@ -6,11 +6,16 @@ const sequelize= require('../util/database');
 const order= sequelize.define('orders',
     {
          id:{
-                    type: Sequelize.INTEGER,
+                    type: Sequelize.STRING,
                     allowNull: false,
-                    primaryKey:true,
-                    autoIncrement: true
+                    primaryKey:true
+                    // autoIncrement: true
+            
                 },
+                // paymentId:{
+                //     type:Sequelize.STRING
+
+                // },
         
                
                 status:{

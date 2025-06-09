@@ -18,6 +18,7 @@ const order= require('./models/order');
 const userroute= require('./routes/user');
 const expenseroute= require('./routes/expense');
 const orderroute= require('./routes/order');
+const premiumfeatureroute= require('./routes/premiumFeature');
 
 
 
@@ -32,11 +33,12 @@ app.use(cors());
 
 app.use(bp.json());
 
-
+ 
 
 app.use('/user', userroute );
 app.use('/expense', expenseroute );
 app.use('/order', orderroute);
+app.use('/premiumFeature', premiumfeatureroute);
 
 
 
@@ -50,14 +52,16 @@ user.hasMany(order);
 order.belongsTo(user);
 
 
+
+
 sequelize.sync()
 .then(()=>{
     app.listen(3000);
 console.log("listening");
 
 })
-.catch(()=>{
-    console.log("sequelize sync error in app.js");
+.catch((err)=>{
+    console.log("sequelize sync error in app.js", err);
     
 })
 

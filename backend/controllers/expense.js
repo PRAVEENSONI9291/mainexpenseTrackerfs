@@ -4,9 +4,9 @@ const expense= require('../models/expense');
 
 const addExpense= async(req, res)=>{
     // console.log(req.body);
-    console.log("expense added by user", req.user);
+    console.log("expense added by user", req.user.id);
 
-    let userId= req.user;
+    let userId= req.user.id;
     
     const {amount, description, category}= req.body;
 
@@ -29,7 +29,7 @@ const addExpense= async(req, res)=>{
 
 const getExpense= async(req, res)=>{
     // console.log("user id after authentication is", req.user);
-    const token = req.user;
+    const token = req.user.id;
     
 
     try {

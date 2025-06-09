@@ -20,7 +20,7 @@ const signup= async(req, res)=>{
                 console.log(err);
 
 
-                await user.create({ name, email, password: hash });
+                await user.create({ name, email, password: hash, isPremium: false });
                 res.status(201).json({ message: 'successfully created new user' })
             })
 
@@ -66,4 +66,31 @@ const login= async (req, res) => {
     }
 }
 
-module.exports= {signup, login};
+const isPremium= async (req, res) => {
+    // console.log("user1 is", req.user.id);
+    
+
+    try {
+
+        const isUserPremium= await user.findOne({where:{id:req.user.id}});
+
+        if(isUserPremium.isPremium){
+            return res.status(200).json({ isPremium: isUserPremium.isPremium, message:"You are a premium User now"} );
+
+        }       
+        else{
+            return res.status(200).json({ isPremium: isUserPremium.isPremium} );
+
+        }  
+        
+        
+    } catch (error) {
+        console.log(error);
+        
+        
+    }
+
+
+}
+
+module.exports= {signup, login, isPremium};
